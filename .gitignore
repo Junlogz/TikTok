@@ -1,0 +1,7 @@
+# Project exclude paths
+/mybatis-generator-database-mysql8/target/
+/tiktok-api/target/
+/tiktok-common/target/
+/tiktok-mapper/target/
+/tiktok-model/target/
+/tiktok-service/target/
