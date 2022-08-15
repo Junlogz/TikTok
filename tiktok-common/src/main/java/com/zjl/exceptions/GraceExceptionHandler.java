@@ -35,14 +35,14 @@ public class GraceExceptionHandler {
         Map<String, String> map = getErrors(result);
         return GraceJSONResult.errorMap(map);
     }
-//
-//    @ExceptionHandler(MaxUploadSizeExceededException.class)
-//    @ResponseBody
-//    public GraceJSONResult returnMaxUploadSize(MaxUploadSizeExceededException e) {
-////        e.printStackTrace();
-//        return GraceJSONResult.errorCustom(ResponseStatusEnum.FILE_MAX_SIZE_2MB_ERROR);
-//    }
-//
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseBody
+    public GraceJSONResult returnMaxUploadSize(MaxUploadSizeExceededException e) {
+//        e.printStackTrace();
+        return GraceJSONResult.errorCustom(ResponseStatusEnum.FILE_MAX_SIZE_2MB_ERROR);
+    }
+
     public Map<String, String> getErrors(BindingResult result) {
         Map<String, String> map = new HashMap<>();
         List<FieldError> errorList = result.getFieldErrors();

@@ -1,6 +1,6 @@
 package com.zjl.intercepter;
 
-import com.zjl.controller.BaseInfoProperties;
+import com.zjl.base.BaseInfoProperties;
 import com.zjl.exceptions.GraceException;
 import com.zjl.grace.result.ResponseStatusEnum;
 import com.zjl.util.IPUtil;
