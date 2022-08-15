@@ -70,7 +70,7 @@ public class VlogController extends BaseInfoProperties {
     @GetMapping("detail")
     public GraceJSONResult detail(@RequestParam(defaultValue = "") String userId,
                                   @RequestParam String vlogId) {
-        return GraceJSONResult.ok(vlogService.getVlogDetailById(vlogId));
+        return GraceJSONResult.ok(vlogService.getVlogDetailById(userId, vlogId));
     }
 
     @ApiOperation("视频设为私密")
@@ -133,26 +133,27 @@ public class VlogController extends BaseInfoProperties {
         return GraceJSONResult.ok(gridResult);
     }
 
-//
-//    @GetMapping("myLikedList")
-//    public GraceJSONResult myLikedList(@RequestParam String userId,
-//                                         @RequestParam Integer page,
-//                                         @RequestParam Integer pageSize) {
-//
-//        if (page == null) {
-//            page = COMMON_START_PAGE;
-//        }
-//        if (pageSize == null) {
-//            pageSize = COMMON_PAGE_SIZE;
-//        }
-//
-//        PagedGridResult gridResult = vlogService.getMyLikedVlogList(userId,
-//                                                                    page,
-//                                                                    pageSize);
-//        return GraceJSONResult.ok(gridResult);
-//    }
-//
-//
+    @ApiOperation("查询用户点赞过的短视频列表")
+    @GetMapping("myLikedList")
+    public GraceJSONResult myLikedList(@RequestParam String userId,
+                                         @RequestParam Integer page,
+                                         @RequestParam Integer pageSize) {
+
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = vlogService.getMyLikedVlogList(userId,
+                                                                    page,
+                                                                    pageSize);
+        return GraceJSONResult.ok(gridResult);
+    }
+
+
+    @ApiOperation("用户点赞/喜欢视频")
     @PostMapping("like")
     public GraceJSONResult like(@RequestParam String userId,
                                  @RequestParam String vlogerId,
@@ -171,7 +172,7 @@ public class VlogController extends BaseInfoProperties {
         return GraceJSONResult.ok();
     }
 
-
+    @ApiOperation("用户取消点赞/喜欢视频")
     @PostMapping("unlike")
     public GraceJSONResult unlike(@RequestParam String userId,
                                 @RequestParam String vlogerId,
@@ -187,44 +188,48 @@ public class VlogController extends BaseInfoProperties {
         return GraceJSONResult.ok();
     }
 
+    @ApiOperation("获得用户点赞视频的总数")
     @PostMapping("totalLikedCounts")
     public GraceJSONResult totalLikedCounts(@RequestParam String vlogId) {
         return GraceJSONResult.ok(vlogService.getVlogBeLikedCounts(vlogId));
     }
-//
-//    @GetMapping("followList")
-//    public GraceJSONResult followList(@RequestParam String myId,
-//                                       @RequestParam Integer page,
-//                                       @RequestParam Integer pageSize) {
-//
-//        if (page == null) {
-//            page = COMMON_START_PAGE;
-//        }
-//        if (pageSize == null) {
-//            pageSize = COMMON_PAGE_SIZE;
-//        }
-//
-//        PagedGridResult gridResult = vlogService.getMyFollowVlogList(myId,
-//                                                                    page,
-//                                                                    pageSize);
-//        return GraceJSONResult.ok(gridResult);
-//    }
-//
-//    @GetMapping("friendList")
-//    public GraceJSONResult friendList(@RequestParam String myId,
-//                                      @RequestParam Integer page,
-//                                      @RequestParam Integer pageSize) {
-//
-//        if (page == null) {
-//            page = COMMON_START_PAGE;
-//        }
-//        if (pageSize == null) {
-//            pageSize = COMMON_PAGE_SIZE;
-//        }
-//
-//        PagedGridResult gridResult = vlogService.getMyFriendVlogList(myId,
-//                                                                    page,
-//                                                                    pageSize);
-//        return GraceJSONResult.ok(gridResult);
-//    }
+
+    @ApiOperation("查询用户关注的博主发布的短视频列表")
+    @GetMapping("followList")
+    public GraceJSONResult followList(@RequestParam String myId,
+                                       @RequestParam Integer page,
+                                       @RequestParam Integer pageSize) {
+
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = vlogService.getMyFollowVlogList(myId,
+                                                                    page,
+                                                                    pageSize);
+        return GraceJSONResult.ok(gridResult);
+    }
+
+    @ApiOperation("朋友视频列表")
+    @GetMapping("friendList")
+    public GraceJSONResult friendList(@RequestParam String myId,
+                                      @RequestParam Integer page,
+                                      @RequestParam Integer pageSize) {
+
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = vlogService.getMyFriendVlogList(myId,
+                                                                    page,
+                                                                    pageSize);
+        return GraceJSONResult.ok(gridResult);
+    }
+
 }

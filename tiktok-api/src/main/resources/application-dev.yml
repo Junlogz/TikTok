@@ -21,13 +21,13 @@ spring:
     host:
     port: 6379
     database: 0
-    password: zjl15977@163.com
+    password:
 
 minio:
   endpoint: http://:9000      # MinIO服务地址
   fileHost: http://:9000      # 文件地址host
   bucketName: tiktok                      # 存储桶bucket名称
   accessKey:                          # 用户名
-  secretKey:                    # 密码
+  secretKey:                      # 密码
   imgSize: 1024                           # 图片大小限制，单位：m
   fileSize: 1024                          # 文件大小限制，单位：m

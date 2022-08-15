@@ -27,7 +27,7 @@ public interface VlogService {
     /**
      * 根据视频主键查询vlog
      */
-    public IndexVlogVO getVlogDetailById(String vlogId);
+    public IndexVlogVO getVlogDetailById(String userId, String vlogId);
 
     /**
      * 用户把视频改为公开/私密的视频
@@ -58,4 +58,25 @@ public interface VlogService {
      * 获得用户点赞视频的总数
      */
     public Integer getVlogBeLikedCounts(String vlogId);
+
+    /**
+     * 查询用户点赞过的短视频
+     */
+    public PagedGridResult getMyLikedVlogList(String userId,
+                                              Integer page,
+                                              Integer pageSize);
+
+    /**
+     * 查询用户关注的博主发布的短视频列表
+     */
+    public PagedGridResult getMyFollowVlogList(String myId,
+                                               Integer page,
+                                               Integer pageSize);
+
+    /**
+     * 查询朋友发布的短视频列表
+     */
+    public PagedGridResult getMyFriendVlogList(String myId,
+                                               Integer page,
+                                               Integer pageSize);
 }
