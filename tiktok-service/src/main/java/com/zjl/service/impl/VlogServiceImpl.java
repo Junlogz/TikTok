@@ -99,12 +99,27 @@ public class VlogServiceImpl extends BaseInfoProperties implements VlogService {
                 // 就能直接拿到用户是否点赞视频
                 v.setDoILikeThisVlog(doILikeVlog(userId, vlogId));
             }
+
+            // 获得当前视频被点赞过的总数
+            v.setLikeCounts(getVlogBeLikedCounts(vlogId));
         }
 
         return setterPagedGrid(list, page);
     }
 
-
+    /**
+     * 获取视频点赞视频总数 根据vlogId从redis中取
+     * @param vlogId
+     * @return
+     */
+    @Override
+    public Integer getVlogBeLikedCounts(String vlogId) {
+        String countsStr = redis.get(REDIS_VLOG_BE_LIKED_COUNTS + ":" + vlogId);
+        if (StringUtils.isBlank(countsStr)) {
+            countsStr = "0";
+        }
+        return Integer.valueOf(countsStr);
+    }
 
     /**
      * 查询是否是点过赞的视频 直接从redis里面拿 给getIndexVlogList调用

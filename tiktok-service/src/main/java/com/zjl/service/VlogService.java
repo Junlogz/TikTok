@@ -53,4 +53,9 @@ public interface VlogService {
      * 用户取消点赞/喜欢视频
      */
     public void userUnLikeVlog(String userId, String vlogId);
+
+    /**
+     * 获得用户点赞视频的总数
+     */
+    public Integer getVlogBeLikedCounts(String vlogId);
 }
